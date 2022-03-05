@@ -1,0 +1,153 @@
+/*
+    css 3d 会带来硬件加速
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: hidden;
+    font: 100%/1.25 Helvetica, Arial, sans-serif;         /*font 复合写法，100% 默认16px 行高1.5 字体大小为16*1.5px*/
+    color: #fff;
+    /* 视点：眼睛离屏幕的距离
+        浏览器兼容前缀
+        -webkit-   Chrome
+        -ms-       微软
+        -moz-      火狐
+        -o-        欧朋
+        兼容 移动端 -webkit- android 和 iphone 都是 webkit
+    */
+    -webkit-perspective: 1000px;    /*Chrome*/
+    -ms-perspective: 1000px;        /*微软*/
+    -moz-perspective: 1000px;       /*火狐*/
+    -o-perspective: 1000px;         /*欧朋*/
+    perspective: 1000px;
+    background: #444;
+    /* 使用图片实现渐变效果，图片太大
+        所以使用 css 渐变来生成
+        线性渐变 linear-gradient(方向, 颜色)
+    */
+    background-image: -webkit-gradient(linear, left top, right bottom, from(#444) to(#999));
+    background-image: -webkit-linear-gradient(left top, #444, #999);
+    background-image: -ms-linear-gradient(left top, #444, #999);
+    background-image: -o-linear-gradient(left top, #444, #999);
+    background-image: -moz-linear-gradient(left top, #444, #999);
+    background-image: linear-gradient(to right bottom, #444, #999);
+}
+
+.book {
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.book {
+    width: 300px;
+    height: 300px;
+    background: red;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* 居中 两种方法 
+        1、margin 赋值 好处：兼容性较好，未使用css3，兼容IE678
+        2、transform: translate
+    */
+    /* margin-left: -150px;
+    margin-top: -150px; */
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    -webkit-transform: rotateX(60deg);
+    -ms-transform: rotateX(60deg);
+    -moz-transform: rotateX(60deg);
+    -o-transform: rotateX(60deg);
+    transform: rotateX(60deg);
+
+    /* 用户无法选择文本 */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.p3d {
+    transform-style: preserve-3d;
+}
+
+/* 正面 */
+.front-cover {
+    cursor: move;
+    transform: rotateY(0deg);
+    transform-origin: 0 50%;
+}
+
+.front {
+    background: #d93e2b;
+}
+
+.page {
+    width: 300px;
+    height: 300px;
+    padding: 1em;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-indent: 2em;
+    /* background: skyblue; */
+}
+
+.back {
+    background: #fff;
+}
+
+.front-cover .back {
+    background-image: url(https://www.html5tricks.com/demo/css3-3d-book/mdn.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* 解决硬件加速不同地问题 */
+    -webkit-transform: translateZ(3px);
+    -moz-transform: translateZ(3px);
+    -o-transform: translateZ(3px);
+    transform: translateZ(3px);
+}
+
+.flip {
+    transform: rotateY(180deg);
+    left: 0%;
+}
+
+.back-cover .back {
+    -webkit-transform: translateZ(-3px);
+    transform: translateZ(-3px);
+}
+
+.shadow, .dino {
+    width: 196px;
+    height: 132px;
+    position: absolute;
+    top: 60px;
+    left: 60px;
+    -webkit-transform-origin: 0 100%; 
+    transform-origin: 0 100%;
+}
+
+.shadow {
+    background: url('shadow.png') no-repeat;
+}
+
+.dino {
+    background: url('dino.png') no-repeat;
+}
