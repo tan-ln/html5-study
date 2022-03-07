@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML5 表单 API</title>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- html5 API 阻止了一些错误， 让提交体验更细致
+    input 各种 type 适合各种类型的数据
+    text password  email number tel
+    自动去阻止表单提交， 
+    IE不支持 html5能力 IE9+支持 
+    打理表单 -->
+    <div class="container">
+        <form name="loginForm">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" name="email" autocomplete="off">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <div class="row">
+            <ul id="emails"></ul>
+        </div>
+    </div>
+    <script>
+        // 作用域 scope
+        (function (g) {
+            // 局部变量
+            // var a = 10
+            // var b = 23
+            // var c = 7
+            // g.a = a
+
+            // h5 
+            const oForm = document.forms['loginForm']
+            
+            const arrEmail = []
+            loadEmail()
+
+            // 不支持 h5 
+            // oForm.addEventListener('submit', function(event) {
+            oForm.addEventListener('submit', (event) => {
+                // 取消默认提交事件
+                event.preventDefault()
+                // 既利用 html5 内置的提醒(email)
+                // const oEmail = document.getElementById('exampleInputEmail1') // getById 性能最快
+                
+                // 通道
+                // js 查找变量的方式 向外冒泡
+                // 1、在 本作用域查找
+                // 2、如果 1 找不到，到父级作用域查找
+                // 3、直到 window
+                const oEmail = oForm.email
+                // console.log(oEmail)
+
+                const strEmail = oEmail.value.trim()
+                if (!strEmail) {
+                    alert('请输入邮箱')
+                    return
+                }
+
+                // 验证邮箱格式，正则
+                // 153221321@qq.com
+                // .test(str)  返回true/false 是否合格
+                // .match(reg) 并且 有()分组时，为正则查找功能
+                const reg = /^(\w+)@([a-z0-9]+)\.([a-z]+)$/i
+                if (!reg.test(strEmail)) {
+                    alert('邮箱格式错误')
+                    return
+                }
+
+                // 显示到页面上
+                addEmail(strEmail)
+                saveEmail(strEmail)
+                // 避免重复点击 清空表单
+                oForm.reset()
+                
+                // this 会多变？ this定不下来的，它跟函数的执行方式有关
+                // 如果是普通函数 作为事件的回调函数来执行 事件内部 this 会指向事件发生的元素
+                // 如果是键头函数， 在执行时this跟父级作用域一致
+                // console.log(this)
+            }, false)
+            
+            function addEmail(email) {
+                if (email == null) return 
+                const strHTML = `
+                    <li>${email}</li>
+                `
+                document.querySelector('#emails').innerHTML += strHTML
+            }
+
+            function saveEmail(email) {
+                // 本地存储 localStorage
+                // key => value 
+                // 如果要存储多个，使用 toString 方法
+                let strEmail = localStorage.getItem('email')
+                // 如果存在 email
+                if (strEmail) {
+                    strEmail += `,${email}`
+                } else {
+                    strEmail = email
+                }
+                localStorage.setItem('email', strEmail)
+            }
+
+            function loadEmail() {
+                const email = localStorage.getItem('email')
+                // indexOf 没有则返回 -1
+                if (email != null && email.indexOf(',') > -1) {
+
+                    for (const i in email.split(',')) {
+
+                        addEmail(email.split(',')[i])
+                    }
+
+                } else {
+                    // 复用函数
+                    addEmail(email)
+                    console.log('add')
+                }
+            }
+
+        })(window)
+        // 全局变量 window 顶级的
+        // document 文案对象
+        // console.log(a)
+    </script>
+</body>
+
+</html>
