@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解锁</title>
+    <script>
+        (function (w) {
+            let s = w.document
+            let html = s.documentElement
+            console.log(html)
+            let colWidth = html.clientWidth / 10
+            html.style.fontSize = colWidth + 'px'
+        })(window)
+    </script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            background-color: #ccc;
+        }
+
+        .hd,
+        .ft {
+            font-size: 0.44444444rem;
+            color: #fff;
+        }
+
+        .hd {
+            text-align: center;
+            margin: 2.94444444rem 4.138888889rem 2.6666666667rem;
+            white-space:nowrap;   
+        }
+
+        .bd {
+            box-sizing: border-box;
+            margin: 0 1.555555556rem;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .bd .btn {
+            /* rem 是在 html 上 font-size:41.4px */
+            /* 41.4px 是 plus 手机宽度的 1/10 */
+            /* 普通 375px plus 414px */
+            /* 5rem == 50% */
+            /* 换算 ?/720px=?rem */
+            width: 1.5555555556rem;
+            height: 1.5555555556rem;
+            line-height: 1.5555555556rem;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            font-size: 0.52777777778rem;
+            display: inline-block;
+            margin-bottom: 0.77777778rem;
+            margin-right: 1.1111111111rem;
+        }
+
+        .bd .btn:active {
+            background-color: khaki;
+        }
+
+        .bd .btn:nth-child(3n) {
+            margin-right: 0;
+        }
+
+        .bd .btn0 {
+            background-color: red;
+            margin-right: -1.1111111111rem;
+            margin-bottom: -0.77777778rem;
+            margin-left: 5rem;
+            transform: translateX(-150%);
+        }
+
+        .ft .ctl {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding: 0 0 0.3rem 0.3rem;
+        }
+
+        .ft .cancel {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            padding: 0 0.3rem 0.3rem 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hd">输入密码</div>
+    <div class="bd">
+        <div class="btn btn1">1</div>
+        <div class="btn btn2">2</div>
+        <div class="btn btn3">3</div>
+        <div class="btn btn4">4</div>
+        <div class="btn btn5">5</div>
+        <div class="btn btn6">6</div>
+        <div class="btn btn7">7</div>
+        <div class="btn btn8">8</div>
+        <div class="btn btn9">9</div>
+        <div class="btn btn0">0</div>
+    </div>
+    <div class="ft">
+        <div class="ctl">紧急呼叫</div>
+        <div class="cancel">取消</div>
+    </div>
+</body>
+
+</html>

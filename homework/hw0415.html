@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- .page.input.js_show>(.page__hd>h1.page__title{Input}+p.page__desc{表单输入})+.page__bd>.weui-cells__title{单选列表项}+.weui-cells.weui-cells__radio>label.weui-cell.weui-check__label[for="x$@11"]*2>div.weui-cell__bd>p{cell standard}^div.weui-cell__ft>input:radio.weui[name="radio1"]#x$@11+span.weui-icon-checked -->
+    <!-- <div class="page input js_show">
+        <div class="page__hd">
+            <h1 class="page__title">Input</h1>
+            <p class="page__desc">表单输入</p>
+        </div>
+        <div class="page__bd">
+            <div class="weui-cells__title">单选列表项</div>
+            <div class="weui-cells weui-cells__radio">
+                <label for="x11" class="weui-cell weui-check__label">
+                    <div class="weui-cell__bd">
+                        <p>cell standard</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <input type="radio" name="radio1" id="x11" class="weui">
+                        <span class="weui-icon-checked"></span>
+                    </div>
+                </label>
+                <label for="x12" class="weui-cell weui-check__label">
+                    <div class="weui-cell__bd">
+                        <p>cell standard</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <input type="radio" name="radio1" id="x12" class="weui" checked="checked">
+                        <span class="weui-icon-checked"></span>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="page input js_show">
+        <div class="page__hd">
+            <h1 class="page__title"></h1>
+            <p class="page__desc"></p>
+        </div>
+        <div class="page__bd">
+            <div class="weui-cells__title"></div>
+            <div class="weui-cells weui-cells__radio">
+                <label for="x11" class="weui-cell weui-check__label">
+                    <div class="weui-cell__bd">
+                        <p>cell standard</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <input type="radio" name="radio1" id="x11" class="weui-check">
+                        <span class="weui-icon-checke"></span>
+                    </div>
+                </label>
+                <label for="x12" class="weui-cell weui-check__label">
+                    <div class="weui-cell__bd">
+                        <p>cell standard</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <input type="radio" name="radio1" id="x12" class="weui-check" checked="checked">
+                        <span class="weui-icon-checke"></span>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+
+    .page.input.js_show>(.page__hd>h1.page__title+p.page__desc)+.page__bd
+
+    .weui-cells__title+.weui-cells.weui-cells__radio>label.weui-cell.weui-check__label[for="x$@11"]*2>div.weui-cell__bd>p{cell standard}^div.weui-cell__ft>span.weui-icon-checked
+
+    input:radio.weui-check[name="radio1"]#x11
+    input:radio.weui-check[name="radio1" checked="checked"]#x12
+
+
+</body>
+
+</html>
